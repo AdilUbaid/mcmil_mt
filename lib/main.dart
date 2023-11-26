@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomeScreen(),
@@ -33,16 +33,45 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TODO"),
+        centerTitle: true,
+        title: const Text("TODO"),
       ),
-      floatingActionButton: Column(mainAxisAlignment: MainAxisAlignment.center,
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(100, (index) {
+          return const Center(
+              child: Card(
+            child: SizedBox(
+              width: 190,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                      backgroundImage: AssetImage(
+                          "lib/468-4686427_profile-demo-hd-png-download.png")),
+                  Text(
+                    "name",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  )
+                ],
+              ),
+            ),
+          ));
+        }),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FloatingActionButton(
             onPressed: () {},
-            child: Icon(Icons.person),
-          ),FloatingActionButton(
+            child: const Icon(Icons.person),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          FloatingActionButton(
             onPressed: () {},
-            child: Icon(Icons.monetization_on),
+            child: const Icon(Icons.monetization_on),
           )
         ],
       ),
